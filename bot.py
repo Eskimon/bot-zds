@@ -71,5 +71,6 @@ class MyClient(discord.Client):
                 await message.channel.send(':clemtriste: Je n\'ai rien trouvé à ce sujet.')
 
 
+token = open('prod-token.txt', 'r').read().strip()
 client = MyClient()
-client.run('NTQ4NDE2NTEyOTE1MTQ0NzE2.XYn-qA.PAHGlnMblt-OJ9XtiB-djG5-aLk')
+client.run(token)

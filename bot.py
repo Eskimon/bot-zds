@@ -63,7 +63,7 @@ class MyClient(discord.Client):
             zeste = random.choice(ZESTES)
             await message.channel.send(zeste)
 
-        if message.content.startswith('!cherche'):
+        elif message.content.startswith('!cherche'):
             query = message.content[len('!cherche '):]
             result = get_search_results(query)
             if result:

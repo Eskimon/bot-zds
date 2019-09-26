@@ -1,0 +1,17 @@
+{
+	"zds": {
+		"title": "Zeste de Savoir - Site web",
+		"description": "Site officiel de Zeste de Savoir",
+		"url": "https://zestedesavoir.com"
+	},
+	"zds-site": {
+		"title": "Zeste de Savoir - Code Source",
+		"description": "Code source de Zeste de Savoir",
+		"url": "https://github.com/zestedesavoir/zds-site"
+	},
+	"zds-bot": {
+		"title": "Clem - Code Source",
+		"description": "Code source de Clem",
+		"url": "https://github.com/eskimon/zds-clem"
+	}
+}

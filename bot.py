@@ -49,5 +49,19 @@ async def cherche(ctx, *, args):
         await ctx.send('{} Je n\'ai rien trouvé à ce sujet.'.format(emoji))
 
 
+@bot.command()
+async def membres(ctx):
+    count = utils.get_members_count()
+    if not count:
+        custom = discord.utils.get(ctx.bot.emojis, name='clemtriste')
+        if custom:
+            emoji = '<:{}:{}>'.format(custom.name, custom.id)
+        else:
+            emoji = '🙁'
+        await ctx.send('{} Je n\'ai pas réussi à trouver l\'information.'.format(emoji))
+    else:
+        await ctx.send('Il y a actuellement **{} membres** d\'enregistré sur ZdS !'.format(count))
+
+
 token = open('prod-token.txt', 'r').read().strip()
 bot.run(token)

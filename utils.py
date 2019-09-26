@@ -1,8 +1,11 @@
+import json
 import urllib
+
 from bs4 import BeautifulSoup
 from urllib import request
 
 
+API_ROOT_URL = 'https://zestedesavoir.com/api'
 QUERY_SEARCH = 'https://zestedesavoir.com/rechercher/?q={query}'
 
 
@@ -44,3 +47,22 @@ def get_search_results(query):
         }]
     else:
         return []
+
+
+def get_members_count():
+    req = request.Request(
+        API_ROOT_URL + '/membres/',
+        data=None,
+        headers={
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'  # noqa
+        }
+    )
+    try:
+        data = request.urlopen(req).read().decode('utf-8')
+        return json.loads(data)['count']
+    except AttributeError:
+        print('problem fetching data')
+        return None
+    except urllib.error.HTTPError as e:
+        print('http error ({})'.format(e))
+        return None

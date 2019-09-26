@@ -1,4 +1,5 @@
 import discord
+import json
 import random
 import utils
 
@@ -75,6 +76,36 @@ async def help(ctx):
         message += '`{}`\t{}\t(ex: `{}`)\n'.format(command.name, command.brief, command.usage)
     await ctx.send(message)
 
+@bot.command(brief='Affiche les informations d\'un signet', usage='!signet <signet à partager>')
+async def signet(ctx, arg):
+    try:
+        with open('signets.json','r') as s:
+            signets = json.load(s)
+
+        if arg in signets:
+            signet = signets[arg]
+            embed = discord.Embed(
+                type = 'rich',
+                title = signet['title'],
+                description = signet['description'],
+                url = signet['url']
+            )
+            await ctx.send(embed = embed)
+        else:
+            custom = discord.utils.get(ctx.bot.emojis, name = 'clemtriste')
+            if custom:
+                emoji = '<:{}:{}>'.format(custom.name, custom.id)
+            else:
+                emoji = '🙁'
+            await ctx.send('{} Je n\'ai rien trouvé à ce sujet.'.format(emoji))
+    except FileNotFoundError as e:
+        print(e)
+        custom = discord.utils.get(ctx.bot.emojis, name = 'clemtriste')
+        if custom:
+            emoji = '<:{}:{}>'.format(custom.name, custom.id)
+        else:
+            emoji = '🙁'
+        await ctx.send('{} Il n\'existe aucun fichier de signets.'.format(emoji))
 
 # Read the discord token
 token = ''

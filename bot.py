@@ -8,6 +8,7 @@ from discord.ext import commands
 ROOT_URL = 'https://zestedesavoir.com'
 
 # Read all proverb
+ZESTES = []
 with open("zestes.txt", "r") as f:
       ZESTES = f.readlines()
 
@@ -30,7 +31,7 @@ async def zeste(ctx):
     await ctx.send(zeste)
 
 
-@bot.command(brief='Cherche un contenu sur ZdS', usage='!cherche <terme à rechercher>', aliases=['lycos', 'recherche])
+@bot.command(brief='Cherche un contenu sur ZdS', usage='!cherche <terme à rechercher>', aliases=['lycos', 'recherche'])
 async def cherche(ctx, *, args):
     results = utils.get_search_results(args)
     if results:
@@ -73,10 +74,11 @@ async def help(ctx):
     for command in ctx.bot.commands:
         message += '`{}`\t{}\t(ex: `{}`)\n'.format(command.name, command.brief, command.usage)
     await ctx.send(message)
-                                                                                                 
+
 
 # Read the discord token
+token = ''
 with open("prod-token.txt", "r") as f:
       token = f.read().strip()
-      
+
 bot.run(token)

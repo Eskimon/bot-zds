@@ -6,7 +6,10 @@ from discord.ext import commands
 
 
 ROOT_URL = 'https://zestedesavoir.com'
-ZESTES = open('zestes.txt').readlines()
+
+# Read all proverb
+with (open("zestes.txt", "r") as ZESTES:
+      ZESTES = ZESTES.readlines()
 
 bot = commands.Bot(command_prefix='!')
 bot.remove_command('help')
@@ -76,6 +79,8 @@ async def help(ctx):
     except discord.ext.commands.errors.CommandInvokeError:
         print('Missing permission to delete messages')
 
-
-token = open('prod-token.txt', 'r').read().strip()
+# Read the discord token
+with open("prod-token.txt", "r") as token:
+      token = token.read().strip()
+      
 bot.run(token)

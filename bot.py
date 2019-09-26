@@ -8,7 +8,7 @@ from discord.ext import commands
 ROOT_URL = 'https://zestedesavoir.com'
 
 # Read all proverb
-with (open("zestes.txt", "r") as f:
+with open("zestes.txt", "r") as f:
       ZESTES = f.readlines()
 
 bot = commands.Bot(command_prefix='!')

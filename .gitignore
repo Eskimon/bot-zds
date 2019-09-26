@@ -1,1 +1,4 @@
 prod-token.txt
+
+__pycache__
+.vs

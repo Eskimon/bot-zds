@@ -69,15 +69,11 @@ async def membres(ctx):
 
 @bot.command(brief='Affiche cette aide', usage='!help', aliases=['aide'])
 async def help(ctx):
-    author = ctx.author
     message = 'Voici les commandes dont je dispose :\n\n'
     for command in ctx.bot.commands:
         message += '`{}`\t{}\t(ex: `{}`)\n'.format(command.name, command.brief, command.usage)
-    await author.send(message)
-    try:
-        await ctx.message.delete()
-    except discord.ext.commands.errors.CommandInvokeError:
-        print('Missing permission to delete messages')
+    await ctx.send(message)
+                                                                                                 
 
 # Read the discord token
 with open("prod-token.txt", "r") as f:

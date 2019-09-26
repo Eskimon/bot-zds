@@ -52,8 +52,15 @@ def get_search_results(query):
 
 
 class MyClient(discord.Client):
+
+    def __init__(self):
+        super().__init__()
+        self.custom_emojis = {}
+
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
+        for emoji in self.emojis:
+            self.custom_emojis[emoji.name] = emoji.id
 
     async def on_message(self, message):
         if message.author == client.user:
@@ -78,7 +85,10 @@ class MyClient(discord.Client):
                     embed.set_thumbnail(url=ROOT_URL + result['thumbnail'])
                 await message.channel.send(content='Voici ce que j\'ai trouvé !', embed=embed)
             else:
-                await message.channel.send(':clemtriste: Je n\'ai rien trouvé à ce sujet.')
+                emoji = '🙁'
+                if 'clemtriste' in self.custom_emojis.keys():
+                    emoji = '<:{}:{}>'.format('clemtriste', self.custom_emojis['clemtriste'])
+                await message.channel.send('{} Je n\'ai rien trouvé à ce sujet.'.format(emoji))
 
 
 token = open('prod-token.txt', 'r').read().strip()

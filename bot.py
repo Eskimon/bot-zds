@@ -30,7 +30,7 @@ async def zeste(ctx):
     await ctx.send(zeste)
 
 
-@bot.command(brief='Cherche un contenu sur ZdS', usage='!cherche <terme à rechercher>', aliases=['lycos'])
+@bot.command(brief='Cherche un contenu sur ZdS', usage='!cherche <terme à rechercher>', aliases=['lycos', 'recherche])
 async def cherche(ctx, *, args):
     results = utils.get_search_results(args)
     if results:

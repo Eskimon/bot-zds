@@ -1,1 +1,5 @@
+# the prod file where the discord token is
 prod-token.txt
+
+# python compiled module
+__pycache__

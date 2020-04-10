@@ -65,7 +65,7 @@ async def membres(ctx):
             emoji = '🙁'
         await ctx.send('{} Je n\'ai pas réussi à trouver l\'information.'.format(emoji))
     else:
-        await ctx.send('Il y a actuellement **{} membres** d\'enregistré sur ZdS !'.format(count))
+        await ctx.send('Il y a actuellement **{} membres** sur ZdS !'.format(count))
 
 
 @bot.command(brief='Affiche cette aide', usage='!help', aliases=['aide'])
